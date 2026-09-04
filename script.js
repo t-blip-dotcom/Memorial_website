@@ -31,7 +31,7 @@ submitBtn.addEventListener('click', async () => {
 
   const { error: uploadError } = await supabaseClient
     .storage
-    .from('memory-photos')
+    .from('memorial-photos')
     .upload(fileName, photoFile);
 
   if (uploadError) {
@@ -43,7 +43,7 @@ submitBtn.addEventListener('click', async () => {
 
   const { data: urlData } = supabaseClient
     .storage
-    .from('memory-photos')
+    .from('memorial-photos')
     .getPublicUrl(fileName);
 
   const { error: insertError } = await supabaseClient
