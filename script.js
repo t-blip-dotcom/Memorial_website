@@ -46,11 +46,11 @@ submitBtn.addEventListener('click', async () => {
     .from('memorial-photos')
     .getPublicUrl(fileName);
 
-  const { error: insertError } = await supabaseClient
-    .from('memories')
+const { error: insertError } = await supabaseClient
+    .from('memorial')
     .insert([{
       memory_name: description,
-      photo_url: urlData.publicUrl,
+      image_url: urlData.publicUrl,
       approval_status: false
     }]);
 
