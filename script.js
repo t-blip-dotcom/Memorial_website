@@ -66,3 +66,36 @@ const { error: insertError } = await supabaseClient
   submitBtn.disabled = false;
   submitBtn.textContent = 'Submit';
 });
+
+async function loadMemories() {
+  const { data, error } = await supabaseClient
+    .from('memorial')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Error loading memories:', error);
+    return;
+  }
+
+  const cardsContainer = document.querySelector('.cards');
+
+  data.forEach((memory) => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    const img = document.createElement('img');
+    img.src = memory.image_url;
+    img.alt = 'image of memory';
+
+    const desc = document.createElement('p');
+    desc.textContent = memory.memory_name;
+
+    card.appendChild(img);
+    card.appendChild(desc);
+
+    cardsContainer.insertBefore(card, addMemoryBtn);
+  });
+}
+
+loadMemories();
