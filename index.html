@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebration of life</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header" id="body">
+        <div id="header-text">
+            <p id="celebrating">CELEBRATING</p>
+            <p style="font-size: 30px;">THE</p>
+            <p style="font-size: 40px;">LIVES</p>
+            <p style="font-size:25px">OF</p>
+            <p style="font-size: 40px;">Cecilia Kahoro</p>
+            <p style="font-size: 35px;">And</p>
+            <p style="font-size: 40px;">Joel Kahoro</p>
+        </div>
+        <div id="header-image">
+            <img src="" alt="Image of the Deceased">
+        </div>
+
+
+    </div>
+    <hr>
+
+    <div class="about-lives">
+        <p id="lives" style="font-weight: bold; font-size: 30px;">ABOUT THEIR LIVES</p>
+        <div class="narrations">
+            <div class="lives" id="cecilia">   
+            </div>
+            <div class="lives" id="joel">  
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="Memories">
+        <p style="font-weight: bold; font-size: 30px;">MEMORIES</p>
+        <div class="cards">
+        <div class="card">
+            <img src="" alt="image of memory">
+            <p>Description of Memory</p>
+        </div>
+        <div class="card">
+            <img src="" alt="image of memory">
+            <p>Description of Memory</p>
+        </div>
+        <div class="card">
+            <img src="" alt="image of memory">
+            <p>Description of Memory</p>
+        </div>
+        <button id="add-memory-btn">
+            <img id="plus" src="" alt="Plus Sign">
+            <p>Add New Memory</p>
+        </button>
+        
+        <div id="memory-form-container" class="modal-overlay">
+            <div class="modal-box">
+                <span id="close-modal">&times;</span>
+                <textarea id="memory-description" placeholder="Describe this memory..."></textarea>
+                <input type="file" id="memory-photo" accept="image/*">
+                <button id="submit-memory-btn">Submit</button>
+            </div>
+        </div>
+
+        </div>
+    </div>
+    <hr>
+    <footer>~Forever In Our Hearts~</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
