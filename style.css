@@ -1,109 +1,112 @@
-body
-{
-    background-color:#feffad;
-    color:#744936;
-    font-family: 'Gilda Display','Ping Hebrew';
+body {
+    background-color: #feffad;
+    color: #744936;
+    font-family: 'Gilda Display', 'Ping Hebrew';
 }
 
-.header
-{
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding:60px;
+    padding: 60px;
 }
-#header-text
-{
+
+#header-text {
     text-align: center;
 }
-#header-text p
-{
-    margin:20px;
+
+#header-text p {
+    margin: 20px;
 }
-#celebrating
-{
+
+#celebrating {
     font-size: 50px;
 }
 
-hr
-{
-    border:2px solid #744936
+hr {
+    border: 2px solid #744936
 }
-.about-lives
-{
-   text-align: center; 
+
+.about-lives {
+    text-align: center;
 }
-.narrations{
+
+.narrations {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
-.Memories
-{
+
+.Memories {
     text-align: center;
 }
-.cards{
+
+.cards {
     text-align: center;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap:25px;
+    gap: 25px;
 }
-.card,button
-{
-    
-    height:auto;
-    width:max-content;
+
+.card,
+button {
+
+    height: auto;
+    width: max-content;
     border-radius: 9px;
-    padding:15px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #eaebbf;
-    
+
 }
-.card p,button p
-{
+
+.card p,
+button p {
     text-align: center;
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
-.card img,button img
-{
-    width:120px;
-    height:100px;
+
+.card img,
+button img {
+    width: 120px;
+    height: 100px;
     object-fit: cover;
-    border-radius: 5px;;
-}
-button{
-
-    background-color:#427177;
-    color:#feffad;
+    border-radius: 5px;
+    ;
 }
 
-.card:nth-child(odd)
-{
+button {
+
     background-color: #427177;
-    
-}
-.card:nth-child(even)
-{
-    background-color:#744936;
-  
+    color: #feffad;
 }
 
-.photos
-{
+.card:nth-child(odd) {
+    background-color: #427177;
+
+}
+
+.card:nth-child(even) {
+    background-color: #744936;
+
+}
+
+.photos {
     text-align: center;
 }
-#header-image
-{
+
+#header-image {
     background-color: #427177;
     border-radius: 400px;
-    width:400px;
+    width: 400px;
     height: 400px;
     align-items: center;
 }
+
 .modal-overlay {
     display: none;
     position: fixed;
@@ -117,6 +120,10 @@ button{
     z-index: 999;
 }
 
+.modal-overlay.modal-open {
+    display: flex;
+}
+
 .modal-box {
     background-color: #feffad;
     padding: 40px;
@@ -128,6 +135,19 @@ button{
     max-width: 500px;
     position: relative;
     font-size: 20px;
+    animation: modal-in 0.18s ease-out;
+}
+
+@keyframes modal-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .modal-box textarea {
@@ -158,15 +178,169 @@ button{
     font-size: 32px;
     color: #000000;
     border-radius: 5px;
-    
+
 }
-#close-modal:hover
-{
+
+#close-modal:hover {
     background-color: #ff0000;
 }
-footer{
+
+footer {
     text-align: center;
     font-style: italic;
     font-size: 25px;
     font-weight: bold;
+}
+
+/* ---------- Custom popup notification (replaces alert()) ---------- */
+.toast {
+    position: fixed;
+    left: 50%;
+    top: 30px;
+    transform: translate(-50%, -20px);
+    max-width: 90%;
+    padding: 16px 22px;
+    border-radius: 9px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #3a9d4f;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 1000;
+}
+
+.toast-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.toast-error {
+    background-color: #c0392b;
+}
+
+/* ---------- Sharper, slightly larger memory photos, with a hover zoom ---------- */
+.card {
+    overflow: hidden;
+}
+
+.card img,
+button img {
+    width: 160px;
+    height: 130px;
+    transition: transform 0.25s ease;
+}
+
+.card:hover img {
+    transform: scale(1.12);
+}
+
+.card img {
+    cursor: pointer;
+}
+
+/* ---------- Full-size photo popup ---------- */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+}
+
+.lightbox-overlay.lightbox-open {
+    display: flex;
+}
+
+.lightbox-overlay img {
+    max-width: 92%;
+    max-height: 88%;
+    border-radius: 6px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+#lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 26px;
+    color: #ffffff;
+    font-size: 36px;
+    cursor: pointer;
+}
+
+/* ---------- Straighten/rotate preview ---------- */
+.photo-preview-wrap {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.photo-preview-wrap.active {
+    display: flex;
+}
+
+#photo-preview {
+    max-width: 100%;
+    max-height: 220px;
+    border-radius: 8px;
+    border: 2px solid #744936;
+}
+
+.rotate-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.rotate-controls button {
+    font-size: 22px;
+    padding: 6px 14px;
+    line-height: 1;
+}
+
+.rotate-controls input[type="range"] {
+    flex: 1;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+    .header {
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 20px;
+    }
+
+    #header-image {
+        width: 240px;
+        height: 240px;
+    }
+
+    #celebrating {
+        font-size: 34px;
+    }
+
+    .narrations {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .modal-box {
+        padding: 24px;
+        font-size: 18px;
+    }
+
+    .toast {
+        font-size: 16px;
+        bottom: 16px;
+    }
 }
