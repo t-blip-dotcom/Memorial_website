@@ -248,4 +248,36 @@ async function loadMemories() {
   });
 }
 
+async function loadGallery() {
+  const { data, error } = await supabaseClient
+    .storage
+    .from('gallery-photos')
+    .list('', { sortBy: { column: 'name', order: 'asc' } });
+
+  if (error) {
+    console.error('Error loading gallery:', error);
+    return;
+  }
+
+  const gallery = document.getElementById('gallery');
+
+  data
+    .filter((file) => file.name && !file.name.startsWith('.'))
+    .forEach((file) => {
+      const { data: urlData } = supabaseClient
+        .storage
+        .from('gallery-photos')
+        .getPublicUrl(file.name);
+
+      const img = document.createElement('img');
+      img.src = urlData.publicUrl;
+      img.alt = 'family photo';
+      img.loading = 'lazy';
+      img.addEventListener('click', () => openLightbox(img.src));
+
+      gallery.appendChild(img);
+    });
+}
+
 loadMemories();
+loadGallery();
